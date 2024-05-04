@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import Product from './components/Products';
 
 export default function App() {
 
@@ -35,7 +36,7 @@ export default function App() {
       </View>
         <FlatList
         data = {tabArticles}
-        renderItem={({item}) => <Text style ={styles.element} > {item.name} </Text> }>
+        renderItem={({item}) => <Product name = {item.name}/> }>
 
         </FlatList>
     </View>
@@ -57,15 +58,5 @@ const styles = StyleSheet.create({
     paddingLeft :10,
     flexGrow:1
   },
-  item:{
-    //backgroundColor : "red"
-    marginTop : 10
-  },
-  element:{
-    backgroundColor : "yellow",
-    padding : 20,
-    fontSize : 17, // police du text
-    marginVertical : 6 //permet de definir des marges vertical plus facilement 
-    //qu'avec margin top et botom
-  }
+  
 });
