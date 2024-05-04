@@ -9,7 +9,7 @@ export default function App() {
   const [tabArticles,setTabArticles] = useState([])
 
 
-  const submitHandler = (articleName, setArticleName) =>{
+  const submitHandler = (articleName) =>{
     const idString = Date.now().toString();
     setTabArticles(currentArticles => [{key: idString, name : articleName},...currentArticles])
    // setArticleName('') //reset le champs de l'article actuel 

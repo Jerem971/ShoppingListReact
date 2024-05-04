@@ -4,9 +4,16 @@ import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-nativ
 const AddProduct = ({submitHandler}) =>{
 
     const [articleName,setArticleName] = useState("")
+
     const inputHandler = (name ) =>{
         setArticleName(name)
     }
+
+    
+  const handleClik = () =>{
+    submitHandler(articleName)
+    setArticleName("");
+  }
 
     return(
         <View style={styles.inputContainer}>
@@ -16,7 +23,7 @@ const AddProduct = ({submitHandler}) =>{
                 value = {articleName}>
             </TextInput>
         
-        <Button title="Enregistrer l'article" onPress={() => submitHandler(articleName,setArticleName)}>
+        <Button title="Enregistrer l'article" onPress={handleClik}>
         </Button>
 
         </View>
