@@ -12,7 +12,10 @@ export default function App() {
   }
 
   const submitHandler = () =>{
-    setTabArticles(currentArticles => [...currentArticles,articleName])
+    const idString = Date.now().toString();
+
+    
+    setTabArticles(currentArticles => [{key: idString, name : articleName},...currentArticles])
     setArticleName('') //reset le champs de l'article actuel 
     console.log(tabArticles)
   }
@@ -30,17 +33,11 @@ export default function App() {
         <Button title="Enregistrer l'article" onPress={submitHandler}>
         </Button>
       </View>
-      <ScrollView>
-      <View style={styles.item}>
-        {
-          tabArticles.map((articleName,index) => (
-          <Text style ={styles.element} key={index} > {articleName} </Text>
-          ))
-        }
+        <FlatList
+        data = {tabArticles}
+        renderItem={({item}) => <Text style ={styles.element} > {item.name} </Text> }>
 
-      </View>
-      </ScrollView>
-
+        </FlatList>
     </View>
 
   );
