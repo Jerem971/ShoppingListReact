@@ -16,7 +16,7 @@ const AddProduct = ({submitHandler}) =>{
                 value = {articleName}>
             </TextInput>
         
-        <Button title="Enregistrer l'article" onPress={() => submitHandler(articleName)}>
+        <Button title="Enregistrer l'article" onPress={() => submitHandler(articleName,setArticleName)}>
         </Button>
 
         </View>
