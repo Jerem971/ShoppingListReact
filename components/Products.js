@@ -1,16 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button, FlatList,TouchableWithoutFeedback , TouchableOpacity, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList,Pressable, TouchableHighlight} from 'react-native';
 
 const Product = (props) =>{
     return(
-        <TouchableHighlight 
-        activeOpacity={0.8}
-        underlayColor="yellow"
-        onPress={() => console.log("cliquer")}>
+        <Pressable 
+        onLongPress={() => props.deleteArticle(props.key_props)}
+        >
             <View style = {styles.items}>
                 <Text style ={styles.element}> {props.name}</Text>
             </View>
-        </TouchableHighlight>
+        </Pressable>
     )
 }
 
