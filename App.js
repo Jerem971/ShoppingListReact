@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Alert} from 'react-native';
 import Product from './components/Products';
 import AddProduct from './components/AddProducts';
@@ -7,7 +7,15 @@ import AddProduct from './components/AddProducts';
 export default function App() {
 
   const [tabArticles,setTabArticles] = useState([])
+  const [count,setCount] = useState(0)
 
+  useEffect(() => {
+    console.log('passed count = '+count)
+    if(count > 3){
+      setTabArticles([])
+    }
+   
+  },[count]);
 
   const submitHandler = (articleName) => {
     const idString = Date.now().toString();
@@ -17,14 +25,14 @@ export default function App() {
       console.log(tabArticles)
     }else{
       //alert('refusé')
-      Alert.alert('Désole','le nombre de char doit etre supérieur à 1',[
+            Alert.alert('Désole','le nombre de char doit etre supérieur à 1',[
         {
           text : 'Compris',
-          onPress: () => console.log('compris clicked')
+         // onPress: () =>
         },
         {
           text : 'OK',
-          onPress: () => console.log('OK clicked')
+          onPress: () =>  setCount(count +1)
         },
         {
           text : 'Yes',
@@ -33,7 +41,7 @@ export default function App() {
       
       ],
       {
-        cancelable : 'true',
+        cancelable : true,
         onDismiss : () => console.log('dismiss')
       }
       )
@@ -56,7 +64,7 @@ export default function App() {
         <Product 
           name = {item.name} 
           key_props = {item.key}
-          deleteArticle = {deleteArticle}
+         deleteArticle = {deleteArticle}
         />  }>
 
         </FlatList>
