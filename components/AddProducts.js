@@ -1,13 +1,24 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 
 const AddProduct = ({submitHandler}) =>{
 
     const [articleName,setArticleName] = useState("")
+    const [isDisabled,setDisabled] = useState(false)
 
     const inputHandler = (name ) =>{
-        setArticleName(name)
+        setArticleName(name) // a chaque fois que le texte change, cela déclenche
+                             // le useState qui actualise la valeur de l'article
     }
+
+    useEffect(() =>{
+        if(articleName.length > 2 ){
+            setDisabled(false)
+        }else{
+            setDisabled(true)
+        }
+
+    },[articleName])
 
     
   const handleClik = () =>{
@@ -23,7 +34,11 @@ const AddProduct = ({submitHandler}) =>{
                 value = {articleName}>
             </TextInput>
         
-        <Button title="Enregistrer l'article" onPress={handleClik}>
+        <Button 
+        title="Enregistrer l'article" 
+        onPress={handleClik}
+        disabled = {isDisabled}
+        >
         </Button>
 
         </View>
